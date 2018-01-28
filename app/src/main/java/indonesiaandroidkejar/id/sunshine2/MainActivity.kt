@@ -39,11 +39,21 @@ class MainActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<ForecastResponse>?, response: Response<ForecastResponse>?) {
                 d(tag, response?.body().toString())
+                // kalau perbedaan response!!.body jika nilai tersebut null //
                 val nWeatherList = response?.body()?.forcastlist
-                nWeatherList?.let {
+                nWeatherList?.map { it.dtTxt = convertToWeekDay(it.dtTxt) }
+                val newForcastList = nWeatherList?.distinctBy { it.dtTxt }
+/*                nWeatherList?.let {
                     forcastList.addAll(it)
+                    //perubahan data "notifyDataSetChanged"
+                    adapter.notifyDataSetChanged()
+                }*/
+                newForcastList?.let {
+                    forcastList.addAll(it)
+                    //perubahan data "notifyDataSetChanged"
                     adapter.notifyDataSetChanged()
                 }
+
             }
             override fun onFailure(call: Call<ForecastResponse>?, t: Throwable?) {
                 i(tag, "data : ${Gson().toJsonTree(t?.message)}")

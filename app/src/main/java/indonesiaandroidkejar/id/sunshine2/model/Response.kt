@@ -23,6 +23,24 @@ class ForecastResponse(
 
 )
 
+data class Forcast (
+
+        @field:SerializedName("dt_txt")
+        var dtTxt:String? = "",
+
+        @field:SerializedName("weather")
+        val weather: List<Weather>? = null,
+
+        @field:SerializedName("main")
+        val main: Temp? = null
+)
+
+data class Temp (
+        @field:SerializedName("temp")
+        val temp:String = ""
+
+)
+
 data class City (
 
         @field:SerializedName("id")
@@ -33,16 +51,6 @@ data class City (
 
         @field:SerializedName("country")
         val country: String = ""
-
-)
-
-data class Forcast (
-
-        @field:SerializedName("dt_txt")
-        val dtTxt:String? = "",
-
-        @field:SerializedName("weather")
-        val weather: List<Weather>? = null
 
 )
 

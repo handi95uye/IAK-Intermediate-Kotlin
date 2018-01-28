@@ -24,7 +24,6 @@ class App  : Application() {
                 .baseUrl("http://samples.openweathermap.org/data/2.5/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
-
         api = retrofit.create(Api::class.java)
     }
 }
